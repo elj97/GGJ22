@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 1129577332}
   - component: {fileID: 1129577331}
   - component: {fileID: 1129577333}
+  - component: {fileID: 1129577334}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -202,7 +203,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 7449395048914601165}
+  - {fileID: 5938506052568372288}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -221,6 +224,25 @@ MonoBehaviour:
   posMag: {fileID: 7449395048914601162}
   negMag: {fileID: 5938506052568372291}
   player: {fileID: 1129577330}
+--- !u!95 &1129577334
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129577330}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebcb5fa369fbba04e9abac138c5fbb9c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1301807101
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,8 +355,8 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
+  m_Mass: 2
+  m_LinearDrag: 3
   m_AngularDrag: 0.05
   m_GravityScale: 1
   m_Material: {fileID: 0}
@@ -555,10 +577,10 @@ Transform:
   m_GameObject: {fileID: 5938506052568372291}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 0.125, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 1129577332}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &5938506052568372289
 BoxCollider2D:
@@ -604,7 +626,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &5938506052568372294
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -668,13 +690,13 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -500
+  m_ForceMagnitude: 50
   m_ForceVariation: 0
   m_DistanceScale: 1
   m_ForceSource: 1
   m_ForceTarget: 0
-  m_ForceMode: 0
-  m_Drag: 10
+  m_ForceMode: 1
+  m_Drag: 0
   m_AngularDrag: 0
 --- !u!1 &7449395048914601162
 GameObject:
@@ -730,10 +752,10 @@ Transform:
   m_GameObject: {fileID: 7449395048914601162}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 0.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 0.125, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_Father: {fileID: 1129577332}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!250 &7449395048914601166
 PointEffector2D:
@@ -747,13 +769,13 @@ PointEffector2D:
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_ForceMagnitude: -500
+  m_ForceMagnitude: -50
   m_ForceVariation: 0
   m_DistanceScale: 1
-  m_ForceSource: 1
-  m_ForceTarget: 0
-  m_ForceMode: 0
-  m_Drag: 10
+  m_ForceSource: 0
+  m_ForceTarget: 1
+  m_ForceMode: 1
+  m_Drag: 0
   m_AngularDrag: 0
 --- !u!212 &7449395048914601167
 SpriteRenderer:

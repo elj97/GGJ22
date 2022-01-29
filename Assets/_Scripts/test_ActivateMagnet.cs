@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class test_ActivateMagnet : MonoBehaviour
 {
-    public GameObject posMag;
-    public GameObject negMag;
-	public GameObject player;
+    [SerializeField] private GameObject posMag;
+	[SerializeField] private GameObject negMag;
+	[SerializeField] private GameObject player;
 
 	void Start()
 	{
@@ -17,18 +18,14 @@ public class test_ActivateMagnet : MonoBehaviour
 	{
         if ( Input.GetButtonDown("Pos") )
 		{
-			Instantiate(posMag, transform.position, Quaternion.identity);
-			posMag.transform.SetParent(player.transform);
 			posMag.SetActive(true);
-
-			
+			negMag.SetActive(false);
 		}
 
 		if ( Input.GetButtonDown("Neg") )
 		{
-			Instantiate(negMag, transform.position, Quaternion.identity);
-			negMag.transform.SetParent(player.transform);
 			negMag.SetActive(true);
+			posMag.SetActive(false);
 		}
 	}
 }
