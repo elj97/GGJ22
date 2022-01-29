@@ -11,6 +11,9 @@ public class MagnetHandler : MonoBehaviour
 
 	private MagnetState magnetState;
 
+	private int magnetNumber;
+	[SerializeField] private int maxMagnets;
+
 	public enum MagnetState
 	{
 		Positive,
@@ -24,18 +27,36 @@ public class MagnetHandler : MonoBehaviour
 	}
 	void Update()
 	{
-		if ( Input.GetButtonDown("Pos") )
+		if ( Input.GetButtonDown("ToggleMagnet1") )
 		{
-			magnetState = MagnetState.Positive;
-			//posMag.SetActive(true);
-			//negMag.SetActive(false);
+			CycleMagnet();
 		}
 
-		if ( Input.GetButtonDown("Neg") )
+		if ( Input.GetButtonDown("ToggleMagnet2") )
 		{
-			magnetState = MagnetState.Negative;
-			//negMag.SetActive(true);
-			//posMag.SetActive(false);
+			CycleMagnet();
+		}
+	}
+
+	void CycleMagnet()
+	{
+		if (magnetNumber >= maxMagnets)
+		{
+			magnetNumber = 0;
+		}
+		else
+		{
+			magnetNumber++;
+		}
+
+		switch ( magnetNumber )
+		{
+			case 0:
+				magnetState = MagnetState.Positive;
+				break;
+			case 1:
+				magnetState = MagnetState.Negative;
+				break;
 		}
 	}
 }
