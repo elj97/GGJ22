@@ -31,9 +31,12 @@ public class Movement : MonoBehaviour
             /*flips character*/
             if (moveH < 0)
                 charScale.x = -charScaleX;
-
-            else
+            //  trigger move left? animation
+            else if (moveH > 0)
                 charScale.x = charScaleX;
+            //  trigger move right? animation
+            //else
+            //  triggle idle animation
 
             transform.localScale = charScale;
 
@@ -50,10 +53,12 @@ public class Movement : MonoBehaviour
             /*flips character */
             if (moveH < 0)
                 charScale.x = -charScaleX;
-
-            else
+            //  trigger move left? animation
+            else if (moveH > 0)
                 charScale.x = charScaleX;
-
+            //  trigger move right? animation
+            //else
+            //  trigger idle animation
             transform.localScale = charScale;
 
             if (Input.GetButtonDown("Jump2") && (isJumping == false))
