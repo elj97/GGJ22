@@ -61,8 +61,10 @@ public class Movement : MonoBehaviour
 
             if ( Input.GetButtonDown("Jump1") && (isJumping == false) )
 			{
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
+                //gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
                 AnimJump();
+
+                //TODO: jumping nonstop on start
             }
                 
         }
@@ -93,13 +95,13 @@ public class Movement : MonoBehaviour
 
             if ( Input.GetButtonDown("Jump2") && (isJumping == false) )
             {
-                gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
+                //gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
                 AnimJump();
             }
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionStay2D(Collision2D collision)
     {
         if ( collision.collider.tag == "Ground" )
         {
@@ -112,9 +114,9 @@ public class Movement : MonoBehaviour
     {
         if ( collision.collider.tag == "Ground" )
         {
-            isJumping = true;
-        }
-    }
+           isJumping = true;
+       }
+   }
 
     #region Animation
     private void AnimWalk()

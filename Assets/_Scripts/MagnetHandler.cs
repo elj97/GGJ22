@@ -13,6 +13,7 @@ public class MagnetHandler : MonoBehaviour
 
 	private int magnetNumber;
 	[SerializeField] private int maxMagnets;
+	Animator mAnimator;
 
 	public enum MagnetState
 	{
@@ -22,6 +23,7 @@ public class MagnetHandler : MonoBehaviour
 
 	void Start()
 	{
+		mAnimator = GetComponent<Animator>();
 		//posMag.SetActive(false);
 		//negMag.SetActive(false);
 	}
@@ -53,10 +55,24 @@ public class MagnetHandler : MonoBehaviour
 		{
 			case 0:
 				magnetState = MagnetState.Positive;
+				AnimMagnetState();
 				break;
 			case 1:
 				magnetState = MagnetState.Negative;
+				AnimMagnetState();
 				break;
 		}
 	}
+	private void AnimMagnetState()
+	{
+		if ( PlayerMagnetState == MagnetState.Positive )
+		{
+			mAnimator.SetBool("Positive", true);
+		}
+		if ( PlayerMagnetState == MagnetState.Negative )
+		{
+			mAnimator.SetBool("Positive", false);
+		}
+	}
+	//TODO: not working, something here is wrong with animmagetstate()
 }
