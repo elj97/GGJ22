@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< Updated upstream
 guid: 256237f23a261e542a9a4b3fdb1c0023
+=======
+guid: 1d549c82408d896428050459c9f41f99
+>>>>>>> Stashed changes
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -140,7 +144,11 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< Updated upstream
     textureCompression: 2
+=======
+    textureCompression: 1
+>>>>>>> Stashed changes
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -152,6 +160,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
+<<<<<<< Updated upstream
     textureCompression: 2
     compressionQuality: 50
     crunchedCompression: 0
@@ -165,6 +174,9 @@ TextureImporter:
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 2
+=======
+    textureCompression: 1
+>>>>>>> Stashed changes
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
