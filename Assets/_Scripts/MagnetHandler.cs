@@ -81,5 +81,4 @@ public class MagnetHandler : MonoBehaviour
             mAnimator.SetBool("Positive", false);
         }
     }
-    //TODO: not working, something here is wrong with animmagetstate()
 }
