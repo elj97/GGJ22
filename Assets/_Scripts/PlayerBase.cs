@@ -8,6 +8,7 @@ public class PlayerBase : ScriptableObject
 {
 	public int speed;
 	public int health;
+	public int jumpHeight;
 	
 	//magnets
 	//magpositon

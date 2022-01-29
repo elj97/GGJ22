@@ -11,4 +11,7 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 00a456b87df619e46ba962682a5b6875, type: 3}
   m_Name: PlayerBase
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerBase
+  m_EditorClassIdentifier: 
+  speed: 5
+  health: 0
+  jumpHeight: 10
