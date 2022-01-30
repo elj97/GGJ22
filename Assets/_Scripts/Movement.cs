@@ -15,9 +15,19 @@ public class Movement : MonoBehaviour
 
     private MagnetHandler Magnet;
 
+    #region  
+    //public AudioClip Jump;
+    //public AudioClip[] SwitchMagnet;
+    //public AudioClip[] MagnetInteraction;
+
+    
+    #endregion
+
 
     void Start()
     {
+        
+
         animator = GetComponent<Animator>();
 
 
@@ -60,7 +70,7 @@ public class Movement : MonoBehaviour
             transform.localScale = charScale;
 
             if ( Input.GetButtonDown("Jump1") && (isJumping == false) )
-			{
+            {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
                 AnimJump();
             }
@@ -175,25 +185,26 @@ public class Movement : MonoBehaviour
         animator.SetBool("Up", false);
         animator.SetBool("Straight", false);
         animator.SetBool("Down", false);
-        /*
-        switch ( Direction )
+        
+        switch ( dir )
         {
+            case Direction.Straight:
+                animator.SetBool("Straight", true);
+                break;
             case Direction.Up:
                 animator.SetBool("Up", true);
                 break;
             case Direction.Down:
                 animator.SetBool("Down", true);
-            case Direction.Straight:
-                animator.SetBool("Straight", true);
                 break;
-        }*/
+        }
     }
-
+    private Direction dir;
     enum Direction
     {
         Straight,
         Up,
-        Down
+        Down,
     }
     // AnimJump, AnimIdleUp, AnimIdleDown, 
     #endregion
