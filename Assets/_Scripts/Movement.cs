@@ -180,7 +180,7 @@ public class Movement : MonoBehaviour
     }
 
     //new code
-    private void AnimDirection()
+    private void AnimDirection(Direction dir)
     {
         animator.SetBool("Up", false);
         animator.SetBool("Straight", false);
@@ -199,7 +199,6 @@ public class Movement : MonoBehaviour
                 break;
         }
     }
-    private Direction dir;
     enum Direction
     {
         Straight,
