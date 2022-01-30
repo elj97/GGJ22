@@ -14,11 +14,30 @@ public class MagnetInteraction : MonoBehaviour
 
 	private PointEffector2D pe2D;
 
+	private MagnetHandler otherPlayerMagnetH;
+	private GameObject otherPlayer;
+
+	[SerializeField] private float howFarAway;
+
+	[SerializeField] private float forceMagnitude;
+
 	private void Start()
 	{
 		MagnetH = GetComponent<MagnetHandler>();
 		//mHAnimator = GetComponent<Animator>();
 		pe2D = GetComponent<PointEffector2D>();
+
+		string otherPlayerString = "Player1";
+
+		if (this.tag == "Player1")
+		{
+			otherPlayerString = "Player2";
+		}
+
+
+		otherPlayer = GameObject.FindWithTag(otherPlayerString);
+
+		otherPlayerMagnetH = otherPlayer.GetComponent<MagnetHandler>();
 
 		//posMag1.SetActive(false);
 		//negMag1.SetActive(false);
@@ -28,21 +47,25 @@ public class MagnetInteraction : MonoBehaviour
 
 	private void Update()
 	{
-		//if ( gameObject.tag == "Player1" )
-		//{
-			if ( MagnetH.PlayerMagnetState == MagnetHandler.MagnetState.Positive )
+		if (Mathf.Abs(Vector3.Distance(otherPlayer.transform.position, transform.position)) > howFarAway)
+		{
+			if ( MagnetH.PlayerMagnetState == MagnetHandler.MagnetState.Positive && otherPlayerMagnetH.PlayerMagnetState == MagnetHandler.MagnetState.Positive || MagnetH.PlayerMagnetState == MagnetHandler.MagnetState.Negative && otherPlayerMagnetH.PlayerMagnetState == MagnetHandler.MagnetState.Negative )
 			{
 				//posMag1.SetActive(true);
 				//negMag1.SetActive(false);
-				pe2D.forceMagnitude = -50;
+				pe2D.forceMagnitude = forceMagnitude;
 			}
 			else
 			{
 				//posMag1.SetActive(false);
 				//negMag1.SetActive(true);
-				pe2D.forceMagnitude = 50;
+				pe2D.forceMagnitude = -forceMagnitude;
 			}
-		//}
+		}
+		else
+		{
+			pe2D.forceMagnitude = 0;
+		}
 		/*
 		if ( gameObject.tag == "Player2" )
 		{

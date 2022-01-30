@@ -15,9 +15,19 @@ public class Movement : MonoBehaviour
 
     private MagnetHandler Magnet;
 
+    #region  
+    //public AudioClip Jump;
+    //public AudioClip[] SwitchMagnet;
+    //public AudioClip[] MagnetInteraction;
+
+    
+    #endregion
+
 
     void Start()
     {
+        
+
         animator = GetComponent<Animator>();
 
 
@@ -29,9 +39,88 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        Move();
+        //Move();
+        Debug.Log($"down is {animator.GetBool("Down")}");
+
+        if( gameObject.tag == "Player1" )
+		{
+            Move("Horizontal1");
+            Jump("Jump1");
+            ChangeDirection("Vertical1");
+        }
+
+        if ( gameObject.tag == "Player2" )
+        {
+            Move("Horizontal2");
+            Jump("Jump2");
+            ChangeDirection("Vertical2");
+        }
     }
 
+    void Move(string keyPress)
+    {
+        float moveH = Input.GetAxis(keyPress);
+        Vector2 moveDirection = new Vector2(moveH, 0);
+        transform.Translate(moveDirection * settings.speed * Time.deltaTime);
+        Vector3 localScale = transform.localScale;
+
+        // flips character
+        if ( moveH < 0 )
+        {
+            charScale.x = -charScaleX;
+            AnimWalk();
+        }
+        else if ( moveH > 0 )
+        {
+            charScale.x = charScaleX;
+            AnimWalk();
+        }
+        else
+        {
+            AnimIdle();
+        }
+
+        transform.localScale = charScale;
+    }
+
+    void Jump(string keyPress)
+    {
+        if ( Input.GetButtonDown(keyPress) && (isJumping == false) )
+        {
+            gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
+            AnimJump();
+        }
+        else
+        {
+            AnimJumpFinish();
+        }
+    }
+
+    void ChangeDirection(string keyPress)
+    {
+        float lookV = Input.GetAxis(keyPress);
+        Vector2 lookDirection = new Vector2(lookV, 0);
+
+        if ( lookV < 0 )
+        {
+            AnimDirection(Direction.Down);
+            // Code for changing the magnet direction
+            //Debug.Log("change dir down");
+        }
+        if ( lookV > 0 )
+        {
+            AnimDirection(Direction.Up);
+            // Code for changing the magnet direction
+            //Debug.Log("change dir up");
+        }
+        else
+        {
+            AnimDirection(Direction.Straight);
+            // Code for changing the magnet direction
+            //Debug.Log("change dir straight");
+        }
+    }
+    /*
     void Move()
     {
         if ( gameObject.tag == "Player1" )
@@ -41,7 +130,7 @@ public class Movement : MonoBehaviour
             transform.Translate(moveDirection * settings.speed * Time.deltaTime);
             Vector3 localScale = transform.localScale;
 
-            /*flips character*/
+            //flips character//
             if ( moveH < 0 )
 			{
                 charScale.x = -charScaleX;
@@ -60,7 +149,7 @@ public class Movement : MonoBehaviour
             transform.localScale = charScale;
 
             if ( Input.GetButtonDown("Jump1") && (isJumping == false) )
-			{
+            {
                 gameObject.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, settings.jumpHeight), ForceMode2D.Impulse);
                 AnimJump();
             }
@@ -77,7 +166,7 @@ public class Movement : MonoBehaviour
             Vector2 moveDirection = new Vector2(moveH, 0);
             transform.Translate(moveDirection * settings.speed * Time.deltaTime);
 
-            /*flips character */
+            //flips character //
             if ( moveH < 0 )
 			{
                 charScale.x = -charScaleX;
@@ -106,22 +195,22 @@ public class Movement : MonoBehaviour
             }
         }
     }
-
-    private void OnTriggerEnter2D(Collider2D other)
+    */
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if ( other.tag == "Ground" )
+        if ( collision.collider.tag == "Ground" )
         {
             isJumping = false;
-            AnimJumpFinish();
+            //AnimJumpFinish();
         }
     }
 
-    private void OnTriggerExit2D(Collider2D other) //trying triggerenter maybe idk
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if ( other.tag == "Ground" )
+        if ( collision.collider.tag == "Ground" )
         {
            isJumping = true;
-           AnimJump();
+           //AnimJump();
        }
    }
 
@@ -170,30 +259,33 @@ public class Movement : MonoBehaviour
     }
 
     //new code
-    private void AnimDirection()
+    private void AnimDirection(Direction dir)
     {
         animator.SetBool("Up", false);
         animator.SetBool("Straight", false);
         animator.SetBool("Down", false);
-        /*
-        switch ( Direction )
+        
+        switch ( dir )
         {
+            case Direction.Straight:
+                animator.SetBool("Straight", true);
+                Debug.Log("change dir straight");
+                break;
             case Direction.Up:
                 animator.SetBool("Up", true);
+                Debug.Log("change dir up");
                 break;
             case Direction.Down:
                 animator.SetBool("Down", true);
-            case Direction.Straight:
-                animator.SetBool("Straight", true);
+                Debug.Log("change dir down");
                 break;
-        }*/
+        }
     }
-
     enum Direction
     {
         Straight,
         Up,
-        Down
+        Down,
     }
     // AnimJump, AnimIdleUp, AnimIdleDown, 
     #endregion
