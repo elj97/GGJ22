@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class OnButtonPressScript : MonoBehaviour
 {
-    public GameObject instructions;
+    //public GameObject instructions;
+    public AudioSource buttonSound;
 
     /*void Start()
     {
@@ -39,5 +40,15 @@ public class OnButtonPressScript : MonoBehaviour
     public void OnButtonPressNxtLvlThree()
     {
         SceneManager.LoadScene("Level_Three");
+    }
+
+    public void ResetScene() //play game
+    {
+        SceneManager.LoadScene("Level_One");
+    }
+
+    public void ButtonSound() //play game
+    {
+        buttonSound.Play();
     }
 }
