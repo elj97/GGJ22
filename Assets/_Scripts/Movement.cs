@@ -40,6 +40,7 @@ public class Movement : MonoBehaviour
     void Update()
     {
         //Move();
+        Debug.Log($"down is {animator.GetBool("Down")}");
 
         if( gameObject.tag == "Player1" )
 		{
